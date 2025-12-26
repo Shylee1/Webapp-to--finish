@@ -1,34 +1,170 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* NeurusAGi Custom Styles */
+
+/* Primary button with clip-path effect */
+.btn-primary {
+  background: rgba(15, 236, 236, 0.1);
+  color: #0FECEC;
+  border: 1px solid rgba(15, 236, 236, 0.5);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(15, 236, 236, 0.2);
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 90% 100%, 0 100%);
+  padding: 1rem 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.btn-primary:hover {
+  background: #0FECEC;
+  color: #000000;
+  box-shadow: 0 0 40px rgba(15, 236, 236, 0.6);
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+/* Secondary button */
+.btn-secondary {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  padding: 1rem 2rem;
 }
 
-.App-link {
-    color: #61dafb;
+.btn-secondary:hover {
+  border-color: #C65D00;
+  color: #C65D00;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Feature card */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(24, 24, 27, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s ease;
+  padding: 2rem;
+}
+
+.feature-card:hover {
+  border-color: rgba(15, 236, 236, 0.5);
+}
+
+/* Pricing card holographic effect */
+.pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.5s ease;
+  padding: 2rem;
+  height: 100%;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.pricing-card:hover {
+  border-color: #0FECEC;
+  box-shadow: 0 0 30px rgba(15, 236, 236, 0.15);
+}
+
+.pricing-card.featured {
+  border-color: #C65D00;
+  box-shadow: 0 0 30px rgba(198, 93, 0, 0.2);
+}
+
+/* Input styles */
+.input-neurus {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+  height: 3rem;
+}
+
+.input-neurus:focus {
+  border-color: #0FECEC;
+  box-shadow: 0 0 0 1px #0FECEC;
+  outline: none;
+}
+
+.input-neurus::placeholder {
+  color: #52525B;
+}
+
+/* Chat message styles */
+.chat-message-user {
+  border: 1px solid rgba(198, 93, 0, 0.5);
+  background: rgba(198, 93, 0, 0.1);
+}
+
+.chat-message-ai {
+  background: rgba(15, 236, 236, 0.1);
+  border: 1px solid rgba(15, 236, 236, 0.3);
+}
+
+/* Hero gradient background */
+.hero-glow {
+  background: radial-gradient(circle at center, rgba(15, 236, 236, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Animated background grid */
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(15, 236, 236, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 236, 236, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glitch effect for featured elements */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 #C65D00, -2px 0 #0FECEC;
+  }
+  25% {
+    text-shadow: -2px 0 #C65D00, 2px 0 #0FECEC;
+  }
+  50% {
+    text-shadow: 2px 0 #0FECEC, -2px 0 #C65D00;
+  }
+  75% {
+    text-shadow: -2px 0 #0FECEC, 2px 0 #C65D00;
+  }
+  100% {
+    text-shadow: 2px 0 #C65D00, -2px 0 #0FECEC;
+  }
+}
+
+.glitch-text {
+  animation: glitch 3s infinite;
+}
+
+/* Pulse animation for CTAs */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(15, 236, 236, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(15, 236, 236, 0.8);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
 }

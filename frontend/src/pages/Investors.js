@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, CheckCircle, TrendingUp, Users, Globe, Shield } from 'lucide-react';
+import { Send, CheckCircle } from 'lucide-react';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
-
-const TEAM_IMAGE = 'https://images.unsplash.com/photo-1600068485133-e0ef65324a22?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwyfHxmdXR1cmlzdGljJTIwb2ZmaWNlJTIwdGVhbSUyMGNvbGxhYm9yYXRpb24lMjBzaWxob3VldHRlfGVufDB8fHx8MTc2Njc1MDcwMXww&ixlib=rb-4.1.0&q=85';
 
 export const Investors = () => {
   const [formData, setFormData] = useState({
@@ -25,8 +24,17 @@ export const Investors = () => {
     setLoading(true);
     setError('');
 
+    // Sanitize all inputs before submission
+    const sanitizedData = {
+      name: DOMPurify.sanitize(formData.name),
+      email: DOMPurify.sanitize(formData.email),
+      company: DOMPurify.sanitize(formData.company),
+      investment_range: DOMPurify.sanitize(formData.investment_range),
+      message: DOMPurify.sanitize(formData.message)
+    };
+
     try {
-      await axios.post(`${API}/investor-inquiries`, formData);
+      await axios.post(`${API}/investor-inquiries`, sanitizedData);
       setSubmitted(true);
     } catch (err) {
       setError('Failed to submit inquiry. Please try again.');
@@ -36,7 +44,9 @@ export const Investors = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // Sanitize input on change
+    const sanitized = DOMPurify.sanitize(e.target.value);
+    setFormData({ ...formData, [e.target.name]: sanitized });
   };
 
   return (
@@ -56,22 +66,17 @@ export const Investors = () => {
                 <br />
                 <span className="text-[#C65D00]">Future of AI</span>
               </h1>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                Join us in building the next generation of artificial intelligence. NeurusAGi is pioneering worldwide-compliant AI solutions for enterprises across the globe.
+              <p className="text-zinc-400 text-lg leading-relaxed mb-8" data-testid="investor-description">
+                {/* Description placeholder */}
               </p>
               
-              {/* Key Metrics Placeholder */}
+              {/* Key Info Placeholders */}
               <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: TrendingUp, label: 'Growth Potential', value: 'High' },
-                  { icon: Users, label: 'Target Market', value: 'Global' },
-                  { icon: Globe, label: 'Coverage', value: 'Worldwide' },
-                  { icon: Shield, label: 'Compliance', value: 'Full' }
-                ].map((item) => (
-                  <div key={item.label} className="glass-light p-4">
-                    <item.icon size={20} className="text-[#C65D00] mb-2" />
-                    <p className="text-zinc-500 text-xs uppercase tracking-wider">{item.label}</p>
-                    <p className="text-white font-semibold">{item.value}</p>
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="glass-light p-4" data-testid={`investor-stat-${i}`}>
+                    <div className="w-5 h-5 bg-[#C65D00]/20 mb-2" />
+                    <p className="text-zinc-500 text-xs uppercase tracking-wider">{/* Label */}</p>
+                    <p className="text-white font-semibold">{/* Value */}</p>
                   </div>
                 ))}
               </div>
@@ -83,12 +88,9 @@ export const Investors = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative hidden lg:block"
             >
-              <img 
-                src={TEAM_IMAGE} 
-                alt="Investment Opportunity" 
-                className="w-full h-[500px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent" />
+              <div className="w-full h-[500px] bg-gradient-to-br from-[#0FECEC]/10 to-[#C65D00]/10">
+                {/* Image placeholder */}
+              </div>
             </motion.div>
           </div>
         </div>
@@ -106,8 +108,8 @@ export const Investors = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Investor Inquiry
             </h2>
-            <p className="text-zinc-500">
-              Interested in learning more? Get in touch with our investor relations team.
+            <p className="text-zinc-500" data-testid="investor-form-subtitle">
+              {/* Subtitle placeholder */}
             </p>
           </motion.div>
 
@@ -121,7 +123,7 @@ export const Investors = () => {
               <CheckCircle size={64} className="text-[#0FECEC] mx-auto mb-6" />
               <h3 className="text-2xl font-bold text-white mb-4">Thank You!</h3>
               <p className="text-zinc-400">
-                Your inquiry has been received. Our investor relations team will be in touch shortly.
+                Your inquiry has been received.
               </p>
             </motion.div>
           ) : (
@@ -182,11 +184,7 @@ export const Investors = () => {
                     data-testid="investor-range-select"
                   >
                     <option value="">Select range</option>
-                    <option value="<100k">Less than $100K</option>
-                    <option value="100k-500k">$100K - $500K</option>
-                    <option value="500k-1m">$500K - $1M</option>
-                    <option value="1m-5m">$1M - $5M</option>
-                    <option value="5m+">$5M+</option>
+                    {/* Options to be filled */}
                   </select>
                 </div>
               </div>
@@ -199,7 +197,6 @@ export const Investors = () => {
                   onChange={handleChange}
                   rows={5}
                   className="w-full input-neurus px-4 py-3 resize-none"
-                  placeholder="Tell us about your interest in NeurusAGi..."
                   data-testid="investor-message-input"
                 />
               </div>

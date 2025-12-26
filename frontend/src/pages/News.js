@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -11,6 +12,7 @@ export const News = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [totalArticles, setTotalArticles] = useState(0);
   const [loading, setLoading] = useState(true);
   const articlesPerPage = 12;
 
@@ -25,11 +27,12 @@ export const News = () => {
         params: {
           page: currentPage,
           limit: articlesPerPage,
-          search: searchQuery || undefined
+          search: searchQuery ? DOMPurify.sanitize(searchQuery) : undefined
         }
       });
       setArticles(response.data.articles);
       setTotalPages(response.data.total_pages);
+      setTotalArticles(response.data.total);
     } catch (error) {
       console.error('Failed to fetch articles:', error);
       setArticles([]);
@@ -41,6 +44,39 @@ export const News = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setCurrentPage(1);
+  };
+
+  // Sanitize input on change
+  const handleSearchChange = (e) => {
+    const sanitized = DOMPurify.sanitize(e.target.value);
+    setSearchQuery(sanitized);
+  };
+
+  // Generate page numbers for pagination
+  const getPageNumbers = () => {
+    const pages = [];
+    const maxVisible = 7;
+    
+    if (totalPages <= maxVisible) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 4) {
+        for (let i = 1; i <= 5; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      } else if (currentPage >= totalPages - 3) {
+        pages.push(1);
+        pages.push('...');
+        for (let i = totalPages - 4; i <= totalPages; i++) pages.push(i);
+      } else {
+        pages.push(1);
+        pages.push('...');
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) pages.push(i);
+        pages.push('...');
+        pages.push(totalPages);
+      }
+    }
+    return pages;
   };
 
   return (
@@ -60,9 +96,14 @@ export const News = () => {
               <br />
               <span className="text-[#0FECEC]">News & Updates</span>
             </h1>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Stay informed with the latest developments in AI technology and NeurusAGi updates.
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="news-subtitle">
+              {/* Subtitle placeholder */}
             </p>
+            {totalArticles > 0 && (
+              <p className="text-zinc-500 text-sm mt-4" data-testid="news-count">
+                {totalArticles} articles
+              </p>
+            )}
           </motion.div>
 
           {/* Search Bar */}
@@ -77,7 +118,7 @@ export const News = () => {
               <input
                 type="text"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchChange}
                 placeholder="Search articles..."
                 className="w-full input-neurus px-6 py-4 pr-14 text-lg"
                 data-testid="news-search-input"
@@ -98,8 +139,8 @@ export const News = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8" data-testid="articles-grid">
         <div className="max-w-7xl mx-auto">
           {loading ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[...Array(6)].map((_, i) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {[...Array(12)].map((_, i) => (
                 <div key={i} className="glass-light p-6 animate-pulse">
                   <div className="h-48 bg-white/10 mb-4" />
                   <div className="h-4 bg-white/10 mb-2 w-1/4" />
@@ -113,13 +154,13 @@ export const News = () => {
               <p className="text-zinc-500 text-lg">No articles found.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {articles.map((article, index) => (
                 <motion.article
                   key={article.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
+                  transition={{ delay: index * 0.03 }}
                   className="group feature-card cursor-pointer"
                   data-testid={`article-card-${article.id}`}
                 >
@@ -140,7 +181,7 @@ export const News = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-[#0FECEC] transition-colors">
+                  <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-[#0FECEC] transition-colors line-clamp-2">
                     {article.title}
                   </h3>
 
@@ -159,9 +200,17 @@ export const News = () => {
             </div>
           )}
 
-          {/* Pagination */}
+          {/* Pagination - Supports 100+ pages */}
           {totalPages > 1 && (
-            <div className="flex justify-center items-center gap-4 mt-16" data-testid="pagination">
+            <div className="flex justify-center items-center gap-2 mt-16 flex-wrap" data-testid="pagination">
+              <button
+                onClick={() => setCurrentPage(1)}
+                disabled={currentPage === 1}
+                className="p-3 glass-light disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#0FECEC] transition-colors text-xs"
+                data-testid="pagination-first"
+              >
+                First
+              </button>
               <button
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
@@ -171,10 +220,11 @@ export const News = () => {
                 <ChevronLeft size={20} />
               </button>
               
-              <div className="flex items-center gap-2">
-                {[...Array(Math.min(5, totalPages))].map((_, i) => {
-                  const page = i + 1;
-                  return (
+              <div className="flex items-center gap-1">
+                {getPageNumbers().map((page, i) => (
+                  page === '...' ? (
+                    <span key={`ellipsis-${i}`} className="px-2 text-zinc-500">...</span>
+                  ) : (
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
@@ -187,23 +237,8 @@ export const News = () => {
                     >
                       {page}
                     </button>
-                  );
-                })}
-                {totalPages > 5 && (
-                  <>
-                    <span className="text-zinc-500">...</span>
-                    <button
-                      onClick={() => setCurrentPage(totalPages)}
-                      className={`w-10 h-10 text-sm font-medium transition-all ${
-                        currentPage === totalPages
-                          ? 'bg-[#0FECEC] text-black'
-                          : 'glass-light hover:border-[#0FECEC]'
-                      }`}
-                    >
-                      {totalPages}
-                    </button>
-                  </>
-                )}
+                  )
+                ))}
               </div>
 
               <button
@@ -213,6 +248,14 @@ export const News = () => {
                 data-testid="pagination-next"
               >
                 <ChevronRight size={20} />
+              </button>
+              <button
+                onClick={() => setCurrentPage(totalPages)}
+                disabled={currentPage === totalPages}
+                className="p-3 glass-light disabled:opacity-30 disabled:cursor-not-allowed hover:border-[#0FECEC] transition-colors text-xs"
+                data-testid="pagination-last"
+              >
+                Last
               </button>
             </div>
           )}

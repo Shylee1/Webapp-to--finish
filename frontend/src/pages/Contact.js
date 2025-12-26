@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, Mail, MapPin, Phone } from 'lucide-react';
 import axios from 'axios';
+import DOMPurify from 'dompurify';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -22,8 +23,16 @@ export const Contact = () => {
     setLoading(true);
     setError('');
 
+    // Sanitize all inputs before submission
+    const sanitizedData = {
+      name: DOMPurify.sanitize(formData.name),
+      email: DOMPurify.sanitize(formData.email),
+      subject: DOMPurify.sanitize(formData.subject),
+      message: DOMPurify.sanitize(formData.message)
+    };
+
     try {
-      await axios.post(`${API}/contact`, formData);
+      await axios.post(`${API}/contact`, sanitizedData);
       setSubmitted(true);
     } catch (err) {
       setError('Failed to send message. Please try again.');
@@ -33,7 +42,9 @@ export const Contact = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // Sanitize input on change
+    const sanitized = DOMPurify.sanitize(e.target.value);
+    setFormData({ ...formData, [e.target.name]: sanitized });
   };
 
   return (
@@ -52,8 +63,8 @@ export const Contact = () => {
               <br />
               <span className="text-[#0FECEC]">Touch</span>
             </h1>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Have questions about NeurusAGi? We'd love to hear from you.
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="contact-subtitle">
+              {/* Subtitle placeholder */}
             </p>
           </motion.div>
         </div>
@@ -72,8 +83,8 @@ export const Contact = () => {
             >
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
-                <p className="text-zinc-500 leading-relaxed">
-                  Reach out to us through any of the following channels. We typically respond within 24 hours.
+                <p className="text-zinc-500 leading-relaxed" data-testid="contact-info-desc">
+                  {/* Description placeholder */}
                 </p>
               </div>
 
@@ -84,7 +95,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-zinc-500 text-sm">Email</p>
-                    <p className="text-white">contact@neurusagi.com</p>
+                    <p className="text-white" data-testid="contact-email">{/* Email placeholder */}</p>
                   </div>
                 </div>
 
@@ -94,7 +105,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-zinc-500 text-sm">Phone</p>
-                    <p className="text-white">+1 (555) 000-0000</p>
+                    <p className="text-white" data-testid="contact-phone">{/* Phone placeholder */}</p>
                   </div>
                 </div>
 
@@ -104,7 +115,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-zinc-500 text-sm">Location</p>
-                    <p className="text-white">Silicon Valley, CA</p>
+                    <p className="text-white" data-testid="contact-location">{/* Location placeholder */}</p>
                   </div>
                 </div>
               </div>
@@ -125,7 +136,7 @@ export const Contact = () => {
                   <CheckCircle size={64} className="text-[#0FECEC] mx-auto mb-6" />
                   <h3 className="text-2xl font-bold text-white mb-4">Message Sent!</h3>
                   <p className="text-zinc-400">
-                    Thank you for reaching out. We'll get back to you as soon as possible.
+                    Thank you for reaching out.
                   </p>
                 </div>
               ) : (
@@ -183,7 +194,6 @@ export const Contact = () => {
                       required
                       rows={6}
                       className="w-full input-neurus px-4 py-3 resize-none"
-                      placeholder="How can we help you?"
                       data-testid="contact-message-input"
                     />
                   </div>

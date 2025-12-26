@@ -1,41 +1,8 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Brain, Shield, Zap, Globe, Lock, Cpu } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const LOGO_URL = 'https://customer-assets.emergentagent.com/job_666bb9f1-3878-43b6-926b-3441c49d8146/artifacts/tgzddx89_IMG_3600.jpeg';
-
-const features = [
-  {
-    icon: Brain,
-    title: 'Advanced AI',
-    description: 'Next-generation artificial intelligence powered by cutting-edge neural architectures.'
-  },
-  {
-    icon: Globe,
-    title: 'Global Compliance',
-    description: 'Automatically adapts to local and federal regulations in all countries worldwide.'
-  },
-  {
-    icon: Shield,
-    title: 'Enterprise Security',
-    description: 'Military-grade encryption and security protocols protecting your data.'
-  },
-  {
-    icon: Zap,
-    title: 'Real-time Processing',
-    description: 'Lightning-fast responses with minimal latency for seamless interactions.'
-  },
-  {
-    icon: Lock,
-    title: 'Privacy First',
-    description: 'Your data never leaves your control. Complete sovereignty over your information.'
-  },
-  {
-    icon: Cpu,
-    title: 'Scalable Infrastructure',
-    description: 'Built to handle enterprise workloads from startup to global scale.'
-  }
-];
 
 export const Home = () => {
   return (
@@ -62,8 +29,8 @@ export const Home = () => {
                 <br />
                 <span className="text-white">Intelligence</span>
               </h1>
-              <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
-                Experience the future of AI. NeurusAGi delivers enterprise-grade artificial intelligence with worldwide compliance, adapting to your local regulatory requirements automatically.
+              <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-10 max-w-xl" data-testid="hero-description">
+                {/* Description placeholder - to be filled */}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link 
@@ -116,7 +83,7 @@ export const Home = () => {
         </motion.div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - Empty placeholders */}
       <section className="relative py-32 bg-[#050505]" data-testid="features-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -126,18 +93,17 @@ export const Home = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              <span className="text-white">Built for the </span>
-              <span className="text-[#0FECEC]">Future</span>
+              <span className="text-white" data-testid="features-title">{/* Title placeholder */}</span>
             </h2>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Enterprise-grade AI infrastructure designed to scale with your ambitions.
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="features-subtitle">
+              {/* Subtitle placeholder */}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((feature, index) => (
+            {[1, 2, 3, 4, 5, 6].map((index) => (
               <motion.div
-                key={feature.title}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -145,11 +111,15 @@ export const Home = () => {
                 className="feature-card group"
                 data-testid={`feature-card-${index}`}
               >
-                <div className="w-12 h-12 flex items-center justify-center bg-[#0FECEC]/10 border border-[#0FECEC]/30 mb-6 group-hover:bg-[#0FECEC]/20 transition-all">
-                  <feature.icon size={24} className="text-[#0FECEC]" />
+                <div className="w-12 h-12 flex items-center justify-center bg-[#0FECEC]/10 border border-[#0FECEC]/30 mb-6">
+                  {/* Icon placeholder */}
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
-                <p className="text-zinc-500 leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-3" data-testid={`feature-title-${index}`}>
+                  {/* Feature title placeholder */}
+                </h3>
+                <p className="text-zinc-500 leading-relaxed" data-testid={`feature-desc-${index}`}>
+                  {/* Feature description placeholder */}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -165,11 +135,11 @@ export const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white">
-              Ready to Transform Your Business?
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white" data-testid="cta-title">
+              {/* CTA Title placeholder */}
             </h2>
-            <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto">
-              Join the next generation of intelligent enterprises. Start your journey with NeurusAGi today.
+            <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto" data-testid="cta-subtitle">
+              {/* CTA Subtitle placeholder */}
             </p>
             <Link 
               to="/pricing" 

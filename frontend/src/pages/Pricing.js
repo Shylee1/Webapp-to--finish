@@ -2,110 +2,18 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check, Sparkles } from 'lucide-react';
 
-const tiers = [
-  {
-    id: 'neural-spark',
-    name: 'Neural Spark',
-    price: 'Free',
-    description: 'Perfect for exploring NeurusAGi capabilities',
-    features: [
-      'Basic AI interactions',
-      'Community support',
-      'Limited API calls',
-      'Standard response time'
-    ],
-    stripeLink: '#',
-    popular: false
-  },
-  {
-    id: 'cortex',
-    name: 'Cortex',
-    price: '$49',
-    period: '/month',
-    description: 'For individuals and small projects',
-    features: [
-      'Everything in Neural Spark',
-      'Priority support',
-      '10,000 API calls/month',
-      'Faster response time',
-      'Basic analytics'
-    ],
-    stripeLink: '#',
-    popular: false
-  },
-  {
-    id: 'synapse',
-    name: 'Synapse',
-    price: '$149',
-    period: '/month',
-    description: 'For growing teams and businesses',
-    features: [
-      'Everything in Cortex',
-      '50,000 API calls/month',
-      'Advanced analytics',
-      'Custom model fine-tuning',
-      'Team collaboration'
-    ],
-    stripeLink: '#',
-    popular: true
-  },
-  {
-    id: 'quantum',
-    name: 'Quantum',
-    price: '$399',
-    period: '/month',
-    description: 'For established businesses',
-    features: [
-      'Everything in Synapse',
-      '200,000 API calls/month',
-      'Dedicated support',
-      'SLA guarantee',
-      'Advanced integrations',
-      'Compliance reports'
-    ],
-    stripeLink: '#',
-    popular: false
-  },
-  {
-    id: 'singularity',
-    name: 'Singularity',
-    price: '$999',
-    period: '/month',
-    description: 'Enterprise-grade AI infrastructure',
-    features: [
-      'Everything in Quantum',
-      'Unlimited API calls',
-      'Dedicated infrastructure',
-      '24/7 premium support',
-      'Custom compliance',
-      'White-label options',
-      'On-premise deployment'
-    ],
-    stripeLink: '#',
-    popular: false,
-    featured: true
-  },
-  {
-    id: 'omniscience',
-    name: 'Omniscience',
-    price: 'Custom',
-    description: 'Tailored solutions for global enterprises',
-    features: [
-      'Everything in Singularity',
-      'Custom development',
-      'Dedicated team',
-      'Global deployment',
-      'Custom SLAs',
-      'Strategic partnership',
-      'Executive support'
-    ],
-    stripeLink: '#',
-    popular: false
-  }
-];
-
 export const Pricing = () => {
   const [hoveredTier, setHoveredTier] = useState(null);
+
+  // 6 tiers - structure only, no pricing info
+  const tiers = [
+    { id: 'tier-1', featured: false, popular: false },
+    { id: 'tier-2', featured: false, popular: false },
+    { id: 'tier-3', featured: false, popular: true },
+    { id: 'tier-4', featured: false, popular: false },
+    { id: 'tier-5', featured: true, popular: false },
+    { id: 'tier-6', featured: false, popular: false }
+  ];
 
   return (
     <div className="min-h-screen bg-black pt-20" data-testid="pricing-page">
@@ -123,8 +31,8 @@ export const Pricing = () => {
               <br />
               <span className="text-[#0FECEC]">Intelligence Level</span>
             </h1>
-            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
-              Scale your AI capabilities with plans designed for every stage of growth. All plans include worldwide compliance.
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="pricing-subtitle">
+              {/* Subtitle placeholder */}
             </p>
           </motion.div>
         </div>
@@ -155,47 +63,57 @@ export const Pricing = () => {
                   {/* Popular/Featured Badge */}
                   {tier.popular && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0FECEC] text-black text-xs font-bold uppercase tracking-wider px-4 py-1">
-                      Most Popular
+                      {/* Badge text placeholder */}
                     </div>
                   )}
                   {tier.featured && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#C65D00] text-white text-xs font-bold uppercase tracking-wider px-4 py-1 flex items-center gap-1 glitch-text">
                       <Sparkles size={12} />
-                      Enterprise
+                      {/* Badge text placeholder */}
                     </div>
                   )}
 
                   {/* Tier Name */}
                   <h3 className={`text-2xl font-bold mb-2 ${
                     tier.featured ? 'text-[#C65D00]' : tier.popular ? 'text-[#0FECEC]' : 'text-white'
-                  }`}>
-                    {tier.name}
+                  }`} data-testid={`tier-name-${index + 1}`}>
+                    {/* Tier name placeholder */}
                   </h3>
 
                   {/* Price */}
                   <div className="mb-4">
-                    <span className="text-4xl font-black text-white">{tier.price}</span>
-                    {tier.period && <span className="text-zinc-500">{tier.period}</span>}
+                    <span className="text-4xl font-black text-white" data-testid={`tier-price-${index + 1}`}>
+                      {/* Price placeholder */}
+                    </span>
+                    <span className="text-zinc-500" data-testid={`tier-period-${index + 1}`}>
+                      {/* Period placeholder */}
+                    </span>
                   </div>
 
                   {/* Description */}
-                  <p className="text-zinc-500 text-sm mb-6">{tier.description}</p>
+                  <p className="text-zinc-500 text-sm mb-6" data-testid={`tier-desc-${index + 1}`}>
+                    {/* Description placeholder */}
+                  </p>
 
                   {/* Features */}
                   <ul className="space-y-3 mb-8 flex-grow">
-                    {tier.features.map((feature, i) => (
+                    {[1, 2, 3, 4, 5].map((i) => (
                       <li key={i} className="flex items-start gap-3 text-sm">
                         <Check size={16} className={`mt-0.5 flex-shrink-0 ${
                           tier.featured ? 'text-[#C65D00]' : 'text-[#0FECEC]'
                         }`} />
-                        <span className="text-zinc-400">{feature}</span>
+                        <span className="text-zinc-400" data-testid={`tier-${index + 1}-feature-${i}`}>
+                          {/* Feature placeholder */}
+                        </span>
                       </li>
                     ))}
                   </ul>
 
-                  {/* CTA Button */}
+                  {/* CTA Button - Hyperlink to Stripe */}
                   <a
-                    href={tier.stripeLink}
+                    href="#" 
+                    data-testid={`pricing-btn-${tier.id}`}
+                    data-stripe-link=""
                     className={`block w-full text-center py-4 font-bold uppercase tracking-wider transition-all duration-300 ${
                       tier.featured 
                         ? 'bg-[#C65D00]/10 text-[#C65D00] border border-[#C65D00]/50 hover:bg-[#C65D00] hover:text-white'
@@ -203,9 +121,8 @@ export const Pricing = () => {
                         ? 'bg-[#0FECEC] text-black hover:shadow-[0_0_30px_rgba(15,236,236,0.5)]'
                         : 'bg-white/5 text-white border border-white/10 hover:border-[#0FECEC] hover:text-[#0FECEC]'
                     }`}
-                    data-testid={`pricing-btn-${tier.id}`}
                   >
-                    {tier.price === 'Free' ? 'Get Started' : tier.price === 'Custom' ? 'Contact Sales' : 'Subscribe'}
+                    {/* Button text placeholder */}
                   </a>
                 </div>
 
@@ -221,19 +138,18 @@ export const Pricing = () => {
         </div>
       </section>
 
-      {/* FAQ/Info Section */}
+      {/* Info Section */}
       <section className="py-20 bg-[#050505]" data-testid="pricing-info">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">All Plans Include</h2>
+          <h2 className="text-3xl font-bold text-white mb-6" data-testid="pricing-info-title">
+            {/* Title placeholder */}
+          </h2>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              'SSL Encryption',
-              'Global CDN',
-              'Auto-scaling',
-              'Compliance Tools'
-            ].map((item) => (
-              <div key={item} className="glass-light p-4">
-                <span className="text-[#0FECEC] text-sm font-medium">{item}</span>
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="glass-light p-4" data-testid={`pricing-info-item-${i}`}>
+                <span className="text-[#0FECEC] text-sm font-medium">
+                  {/* Item placeholder */}
+                </span>
               </div>
             ))}
           </div>

@@ -1,9 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Eye, Heart } from 'lucide-react';
-
-const TEAM_IMAGE = 'https://images.unsplash.com/photo-1600068485133-e0ef65324a22?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwyfHxmdXR1cmlzdGljJTIwb2ZmaWNlJTIwdGVhbSUyMGNvbGxhYm9yYXRpb24lMjBzaWxob3VldHRlfGVufDB8fHx8MTc2Njc1MDcwMXww&ixlib=rb-4.1.0&q=85';
-const ABSTRACT_IMAGE = 'https://images.unsplash.com/photo-1684394944551-6c55a647337b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHw0fHxmdXR1cmlzdGljJTIwYXJ0aWZpY2lhbCUyMGludGVsbGlnZW5jZSUyMGJyYWluJTIwZ2xvd2luZyUyMG5ldXJhbCUyMG5ldHdvcmt8ZW58MHx8fHwxNzY2NzUwNjk4fDA&ixlib=rb-4.1.0&q=85';
+import { ArrowRight } from 'lucide-react';
 
 export const About = () => {
   return (
@@ -23,11 +20,11 @@ export const About = () => {
                 <br />
                 <span className="text-[#0FECEC]">NeurusAGi</span>
               </h1>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                We are pioneering the future of artificial intelligence, building technology that seamlessly integrates with businesses worldwide while respecting local regulations and cultural nuances.
+              <p className="text-zinc-400 text-lg leading-relaxed mb-8" data-testid="about-description-1">
+                {/* Description placeholder */}
               </p>
-              <p className="text-zinc-500 leading-relaxed">
-                Our mission is to democratize access to advanced AI capabilities, ensuring that organizations of all sizes can leverage the power of next-generation intelligence.
+              <p className="text-zinc-500 leading-relaxed" data-testid="about-description-2">
+                {/* Description placeholder */}
               </p>
             </motion.div>
             
@@ -37,13 +34,8 @@ export const About = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={ABSTRACT_IMAGE} 
-                  alt="AI Technology" 
-                  className="w-full h-[400px] object-cover"
-                  data-testid="about-hero-image"
-                />
+              <div className="relative overflow-hidden h-[400px] bg-gradient-to-br from-[#0FECEC]/10 to-[#C65D00]/10">
+                {/* Image placeholder */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
               </div>
             </motion.div>
@@ -60,20 +52,15 @@ export const About = () => {
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              <span className="text-white">Our </span>
-              <span className="text-[#C65D00]">Core Values</span>
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-testid="values-title">
+              {/* Title placeholder */}
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { icon: Target, title: 'Mission', description: 'To revolutionize how businesses interact with AI, making advanced intelligence accessible, compliant, and secure for organizations worldwide.' },
-              { icon: Eye, title: 'Vision', description: 'A future where AI amplifies human potential, respects privacy, and operates within the ethical and legal frameworks of every jurisdiction.' },
-              { icon: Heart, title: 'Values', description: 'Innovation with integrity. We believe technology should serve humanity while protecting individual rights and promoting global cooperation.' }
-            ].map((item, index) => (
+            {[1, 2, 3].map((index) => (
               <motion.div
-                key={item.title}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -82,10 +69,14 @@ export const About = () => {
                 data-testid={`value-card-${index}`}
               >
                 <div className="w-14 h-14 flex items-center justify-center bg-[#C65D00]/10 border border-[#C65D00]/30 mb-6">
-                  <item.icon size={28} className="text-[#C65D00]" />
+                  {/* Icon placeholder */}
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4">{item.title}</h3>
-                <p className="text-zinc-500 leading-relaxed">{item.description}</p>
+                <h3 className="text-2xl font-semibold text-white mb-4" data-testid={`value-title-${index}`}>
+                  {/* Title placeholder */}
+                </h3>
+                <p className="text-zinc-500 leading-relaxed" data-testid={`value-desc-${index}`}>
+                  {/* Description placeholder */}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -102,13 +93,9 @@ export const About = () => {
               viewport={{ once: true }}
               className="relative"
             >
-              <img 
-                src={TEAM_IMAGE} 
-                alt="Our Team" 
-                className="w-full h-[500px] object-cover"
-                data-testid="team-image"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent" />
+              <div className="w-full h-[500px] bg-gradient-to-br from-[#0FECEC]/10 to-[#C65D00]/10">
+                {/* Image placeholder */}
+              </div>
             </motion.div>
             
             <motion.div
@@ -116,15 +103,14 @@ export const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                <span className="text-white">The Team Behind </span>
-                <span className="text-[#0FECEC]">The Vision</span>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-testid="team-title">
+                {/* Title placeholder */}
               </h2>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                Our team consists of world-class researchers, engineers, and visionaries united by a common goal: building AI that works for everyone.
+              <p className="text-zinc-400 text-lg leading-relaxed mb-6" data-testid="team-desc-1">
+                {/* Description placeholder */}
               </p>
-              <p className="text-zinc-500 leading-relaxed mb-8">
-                With expertise spanning machine learning, regulatory compliance, enterprise systems, and human-computer interaction, we bring together diverse perspectives to solve complex challenges.
+              <p className="text-zinc-500 leading-relaxed mb-8" data-testid="team-desc-2">
+                {/* Description placeholder */}
               </p>
               <Link 
                 to="/contact" 
@@ -139,7 +125,7 @@ export const About = () => {
         </div>
       </section>
 
-      {/* Global Compliance */}
+      {/* Compliance */}
       <section className="py-32 bg-[#050505]" data-testid="compliance-section">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -151,13 +137,13 @@ export const About = () => {
               <span className="text-white">Worldwide </span>
               <span className="text-[#0FECEC]">Compliance</span>
             </h2>
-            <p className="text-zinc-400 text-lg leading-relaxed mb-10">
-              NeurusAGi automatically adapts to local and federal regulations in all countries. Our intelligent compliance engine ensures your AI operations meet the specific legal requirements of each jurisdiction where you operate.
+            <p className="text-zinc-400 text-lg leading-relaxed mb-10" data-testid="compliance-desc">
+              {/* Description placeholder */}
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {['GDPR', 'CCPA', 'HIPAA', 'SOC2', 'ISO 27001', 'LGPD', 'PDPA', 'POPIA'].map((cert) => (
-                <div key={cert} className="glass-light p-4 text-center">
-                  <span className="text-[#0FECEC] font-mono text-sm">{cert}</span>
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                <div key={i} className="glass-light p-4 text-center" data-testid={`compliance-badge-${i}`}>
+                  <span className="text-[#0FECEC] font-mono text-sm">{/* Badge placeholder */}</span>
                 </div>
               ))}
             </div>

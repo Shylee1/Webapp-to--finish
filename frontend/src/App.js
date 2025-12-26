@@ -12,6 +12,9 @@ import { Contact } from "./pages/Contact";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Dashboard } from "./pages/Dashboard";
+import { AdminLogin } from "./pages/admin/AdminLogin";
+import { AdminChangePassword } from "./pages/admin/AdminChangePassword";
+import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { Toaster } from "./components/ui/sonner";
 
 // Layout with Navbar and Footer for public pages
@@ -23,7 +26,7 @@ const PublicLayout = ({ children }) => (
   </>
 );
 
-// Auth layout without Navbar/Footer
+// Auth/Admin layout without Navbar/Footer
 const AuthLayout = ({ children }) => (
   <>{children}</>
 );
@@ -42,12 +45,17 @@ function App() {
             <Route path="/investors" element={<PublicLayout><Investors /></PublicLayout>} />
             <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
             
-            {/* Auth Pages */}
+            {/* User Auth Pages */}
             <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
             <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
             
-            {/* Dashboard */}
+            {/* User Dashboard */}
             <Route path="/dashboard" element={<AuthLayout><Dashboard /></AuthLayout>} />
+            
+            {/* Executive Admin Routes */}
+            <Route path="/admin/login" element={<AuthLayout><AdminLogin /></AuthLayout>} />
+            <Route path="/admin/change-password" element={<AuthLayout><AdminChangePassword /></AuthLayout>} />
+            <Route path="/admin/dashboard" element={<AuthLayout><AdminDashboard /></AuthLayout>} />
           </Routes>
         </BrowserRouter>
         <Toaster />

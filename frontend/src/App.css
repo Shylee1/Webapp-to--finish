@@ -37,32 +37,30 @@
   color: #C65D00;
 }
 
-/* Feature card */
+/* Feature card - transparent */
 .feature-card {
   position: relative;
   overflow: hidden;
-  background: rgba(24, 24, 27, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.5s ease;
   padding: 2rem;
 }
 
 .feature-card:hover {
-  border-color: rgba(15, 236, 236, 0.5);
+  border-color: rgba(15, 236, 236, 0.3);
 }
 
-/* Pricing card holographic effect */
+/* Pricing card - transparent */
 .pricing-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.5s ease;
   padding: 2rem;
   height: 100%;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
 .pricing-card:hover {

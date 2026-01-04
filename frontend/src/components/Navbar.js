@@ -24,9 +24,12 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 glass-heavy" data-testid="navbar">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
+          {/* Logo - clean on black header */}
           <Link to="/" className="flex items-center gap-3" data-testid="nav-logo">
-            <img src={LOGO_URL} alt="NeurusAGi" className="h-12 w-auto" />
+            <span className="text-xl font-bold tracking-tight">
+              <span className="text-white">Neurus</span>
+              <span className="text-[#0FECEC]">AGi</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

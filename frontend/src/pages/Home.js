@@ -7,19 +7,32 @@ const LOGO_URL = 'https://customer-assets.emergentagent.com/job_666bb9f1-3878-43
 export const Home = () => {
   return (
     <div className="min-h-screen bg-black" data-testid="home-page">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Fixed Background Logo */}
+      <div 
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: `url(${LOGO_URL})`,
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'contain',
+          backgroundColor: '#000000',
+          opacity: 0.15
+        }}
+        data-testid="hero-background-logo"
+      />
+
+      {/* Hero Section - Content scrolls over the fixed background */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden z-10">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-grid opacity-30" />
-        <div className="absolute inset-0 hero-glow" />
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="max-w-3xl mx-auto text-center">
             {/* Text Content */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-none mb-6">
@@ -29,10 +42,10 @@ export const Home = () => {
                 <br />
                 <span className="text-white">Intelligence</span>
               </h1>
-              <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-10 max-w-xl" data-testid="hero-description">
+              <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto" data-testid="hero-description">
                 {/* Description placeholder - to be filled */}
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center">
                 <Link 
                   to="/register" 
                   className="btn-primary flex items-center gap-2 pulse-glow"
@@ -48,24 +61,6 @@ export const Home = () => {
                 >
                   Learn More
                 </Link>
-              </div>
-            </motion.div>
-
-            {/* Logo/Visual */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative flex justify-center"
-            >
-              <div className="relative">
-                <div className="absolute inset-0 blur-3xl bg-[#0FECEC]/20 rounded-full" />
-                <img 
-                  src={LOGO_URL} 
-                  alt="NeurusAGi" 
-                  className="relative w-full max-w-lg float"
-                  data-testid="hero-logo"
-                />
               </div>
             </motion.div>
           </div>

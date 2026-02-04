@@ -16,6 +16,7 @@ import { AdminLogin } from "./pages/admin/AdminLogin";
 import { AdminChangePassword } from "./pages/admin/AdminChangePassword";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { Toaster } from "./components/ui/sonner";
+import { Analytics } from "@vercel/analytics/react";
 
 // Layout with Navbar and Footer for public pages
 const PublicLayout = ({ children }) => (
@@ -59,6 +60,7 @@ function App() {
           </Routes>
         </BrowserRouter>
         <Toaster />
+        <Analytics />
       </div>
     </AuthProvider>
   );

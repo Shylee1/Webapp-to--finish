@@ -1,1 +1,1 @@
-{\n  "name": "webapp-to-finish",\n  "version": "1.0.0",\n  "dependencies": {\n    "@aws-sdk/client-s3": "^3.0.0",\n    "serverless": "^2.0.0"\n  }\n}
+\n  "name": "webapp-to-finish",\n  "version": "1.0.0",\n  "dependencies": {\n    "@aws-sdk/client-s3": "^3.0.0",\n    "serverless": "^2.0.0"\n  }\n}

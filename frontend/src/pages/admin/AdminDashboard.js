@@ -40,7 +40,7 @@ export const AdminDashboard = () => {
       return;
     }
     fetchDashboardData();
-  }, [token, navigate]);
+  }, [token, navigate, fetchDashboardData]);boardData]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });

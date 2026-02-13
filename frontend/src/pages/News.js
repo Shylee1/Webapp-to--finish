@@ -18,7 +18,7 @@ export const News = () => {
 
   useEffect(() => {
     fetchArticles();
-  }, [currentPage, searchQuery]);
+  }, [currentPage, searchQuery, fetchArticles]);
 
   const fetchArticles = async () => {
     setLoading(true);

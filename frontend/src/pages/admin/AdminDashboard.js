@@ -40,7 +40,7 @@ export const AdminDashboard = () => {
       return;
     }
     fetchDashboardData();
-  }, [token, navigate, fetchDashboardData]);boardData]);
+  }, [token, navigate, fetchDashboardData]); boardData;);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -189,11 +189,10 @@ export const AdminDashboard = () => {
             <button
               key={item.id}
               onClick={() => setActiveSection(item.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 transition-all ${
-                activeSection === item.id
+              className={`w-full flex items-center gap-3 px-4 py-3 transition-all ${activeSection === item.id
                   ? 'text-[#C65D00] bg-[#C65D00]/10 border border-[#C65D00]/30'
                   : 'text-zinc-500 hover:text-white hover:bg-white/5'
-              }`}
+                }`}
               data-testid={`admin-nav-${item.id}`}
             >
               <item.icon size={18} />
@@ -534,11 +533,10 @@ export const AdminDashboard = () => {
                     ) : (
                       chatMessages.map((msg, i) => (
                         <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                          <div className={`max-w-[70%] px-6 py-4 ${
-                            msg.role === 'user'
+                          <div className={`max-w-[70%] px-6 py-4 ${msg.role === 'user'
                               ? 'bg-[#C65D00]/10 border border-[#C65D00]/30'
                               : 'bg-[#0FECEC]/10 border border-[#0FECEC]/30'
-                          }`}>
+                            }`}>
                             <p className="text-white">{msg.content}</p>
                             <p className="text-xs text-zinc-600 mt-2">{new Date(msg.timestamp).toLocaleTimeString()}</p>
                           </div>

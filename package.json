@@ -4,9 +4,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "cd frontend && yarn start",
-    "build": "cd frontend && yarn build",
-    "start": "cd frontend && yarn start"
+    "dev": "cd frontend && npm install --legacy-peer-deps && npm start",
+    "build": "cd frontend && npm install --legacy-peer-deps && npm run build",
+    "start": "cd frontend && npm start"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",
+    "axios": "^1.13.5",
+    "react": "^19.2.4",
     "serverless": "^2.0.0"
   }
 }

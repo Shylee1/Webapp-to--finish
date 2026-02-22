@@ -10,8 +10,13 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",
+    "@vercel/analytics": "^1.6.1",
     "axios": "^1.13.5",
+    "dompurify": "^3.3.1",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
     "react": "^19.2.4",
+    "react-router-dom": "^7.13.0",
     "serverless": "^2.0.0"
   }
 }

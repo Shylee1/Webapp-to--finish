@@ -50,7 +50,7 @@ export const AdminChangePassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4" data-testid="admin-change-password-page">
+    <div className="min-h-screen flex items-center justify-center px-4" data-testid="admin-change-password-page">
       <div className="absolute inset-0 hero-glow opacity-10" />
       
       <motion.div

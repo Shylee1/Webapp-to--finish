@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
@@ -16,11 +16,7 @@ export const News = () => {
   const [loading, setLoading] = useState(true);
   const articlesPerPage = 12;
 
-  useEffect(() => {
-    fetchArticles();
-  }, [currentPage, searchQuery, fetchArticles]);
-
-  const fetchArticles = async () => {
+  const fetchArticles = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API}/articles`, {
@@ -39,7 +35,11 @@ export const News = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchQuery]);
+
+  useEffect(() => {
+    fetchArticles();
+  }, [fetchArticles]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -80,7 +80,7 @@ export const News = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black pt-20" data-testid="news-page">
+    <div className="min-h-screen pt-20" data-testid="news-page">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 hero-glow opacity-20" />
@@ -97,7 +97,7 @@ export const News = () => {
               <span className="text-[#0FECEC]">News & Updates</span>
             </h1>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="news-subtitle">
-              {/* Subtitle placeholder */}
+              Stay informed on NeurusAGI technical disclosures, performance milestones, and industry developments.
             </p>
             {totalArticles > 0 && (
               <p className="text-zinc-500 text-sm mt-4" data-testid="news-count">

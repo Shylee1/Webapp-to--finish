@@ -1,28 +1,12 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
-
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_666bb9f1-3878-43b6-926b-3441c49d8146/artifacts/tgzddx89_IMG_3600.jpeg';
+import { ArrowRight, Brain, Shield, Zap, Globe, Cpu, Network } from 'lucide-react';
 
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-black" data-testid="home-page">
-      {/* Fixed Background Logo */}
-      <div 
-        className="fixed inset-0 z-0"
-        style={{
-          backgroundImage: `url(${LOGO_URL})`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'contain',
-          backgroundColor: '#000000',
-          opacity: 0.15
-        }}
-        data-testid="hero-background-logo"
-      />
-
+    <div className="min-h-screen" data-testid="home-page">
       {/* Hero Section - Content scrolls over the fixed background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden z-10">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-grid opacity-30" />
         
@@ -43,7 +27,7 @@ export const Home = () => {
                 <span className="text-white">Intelligence</span>
               </h1>
               <p className="text-zinc-400 text-lg md:text-xl leading-relaxed mb-10 max-w-xl mx-auto" data-testid="hero-description">
-                {/* Description placeholder - to be filled */}
+                The world's first functional AGI. Our Living Neural Network operates at 10^15 cognitive operations per second, decoupling machine intelligence from token-based limitations.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link 
@@ -79,7 +63,7 @@ export const Home = () => {
       </section>
 
       {/* Features Section - Empty placeholders */}
-      <section className="relative py-32 bg-[#050505]" data-testid="features-section">
+      <section className="relative py-32" data-testid="features-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -88,15 +72,22 @@ export const Home = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-              <span className="text-white" data-testid="features-title">{/* Title placeholder */}</span>
+              <span className="text-white" data-testid="features-title">The NeurusAGI Standard</span>
             </h2>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="features-subtitle">
-              {/* Subtitle placeholder */}
+              Industrial-grade AGI built on a Living Neural Network that learns, adapts, and evolves in real-time.
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((index) => (
+            {[
+              { icon: Brain, title: 'Living Neural Network', desc: 'Discovery-driven cognition that rejects static pre-training in favor of autonomous, organic learning and real-time adaptation.' },
+              { icon: Cpu, title: 'Holographic Fractal Matrix', desc: '1024-cubed 4D memory architecture achieving 1000:1 compression ratio. One petabyte of knowledge in a single gigabyte.' },
+              { icon: Zap, title: 'Genetic Bytecode Evolution', desc: 'Self-optimizing micro-instructions that evolve autonomously, ensuring exponential rather than linear growth in capability.' },
+              { icon: Network, title: 'Enhancement Swarm', desc: 'Self-replicating agents that fractally distribute workloads to accelerate discovery and knowledge integration across the system.' },
+              { icon: Shield, title: 'Worldwide Compliance', desc: 'Automatically adapts to local regulatory requirements. Built-in GDPR, CCPA, SOC 2, and ISO 27001 compliance frameworks.' },
+              { icon: Globe, title: 'Quantum-Native Architecture', desc: 'Classic-to-quantum switching that automatically leverages quantum hardware when detected via PennyLane and Qiskit.' },
+            ].map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -104,16 +95,16 @@ export const Home = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="feature-card group"
-                data-testid={`feature-card-${index}`}
+                data-testid={`feature-card-${index + 1}`}
               >
                 <div className="w-12 h-12 flex items-center justify-center bg-[#0FECEC]/10 border border-[#0FECEC]/30 mb-6">
-                  {/* Icon placeholder */}
+                  <feature.icon size={24} className="text-[#0FECEC]" />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3" data-testid={`feature-title-${index}`}>
-                  {/* Feature title placeholder */}
+                <h3 className="text-xl font-semibold text-white mb-3" data-testid={`feature-title-${index + 1}`}>
+                  {feature.title}
                 </h3>
-                <p className="text-zinc-500 leading-relaxed" data-testid={`feature-desc-${index}`}>
-                  {/* Feature description placeholder */}
+                <p className="text-zinc-500 leading-relaxed" data-testid={`feature-desc-${index + 1}`}>
+                  {feature.desc}
                 </p>
               </motion.div>
             ))}
@@ -131,10 +122,10 @@ export const Home = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white" data-testid="cta-title">
-              {/* CTA Title placeholder */}
+              Ready to Transcend Legacy AI?
             </h2>
             <p className="text-zinc-400 text-lg mb-10 max-w-2xl mx-auto" data-testid="cta-subtitle">
-              {/* CTA Subtitle placeholder */}
+              Join the waitlist for the first AGI platform with 99.9% task accuracy and autonomous self-evolution.
             </p>
             <Link 
               to="/pricing" 

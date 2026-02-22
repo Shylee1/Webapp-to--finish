@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Target, Lightbulb, Rocket } from 'lucide-react';
 
 export const About = () => {
   return (
-    <div className="min-h-screen bg-black pt-20" data-testid="about-page">
+    <div className="min-h-screen pt-20" data-testid="about-page">
       {/* Hero */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 hero-glow opacity-30" />
@@ -21,10 +21,10 @@ export const About = () => {
                 <span className="text-[#0FECEC]">NeurusAGi</span>
               </h1>
               <p className="text-zinc-400 text-lg leading-relaxed mb-8" data-testid="about-description-1">
-                {/* Description placeholder */}
+                NeurusAGI is a high-performance artificial intelligence enterprise established to move beyond the limitations of legacy machine learning and deliver the world's first functional Artificial General Intelligence. Founded and led by CEO Jeremy Taylor, the company operates out of Tulsa, Oklahoma.
               </p>
               <p className="text-zinc-500 leading-relaxed" data-testid="about-description-2">
-                {/* Description placeholder */}
+                Built upon a fundamental architectural shift from static transformer models to a Living Neural Network (LNN), a discovery-driven system first validated in February 2025. NeurusAGI focuses on autonomous, organic cognition and self-evolution, rejecting the pre-training methods of traditional AI in favor of a system that learns and adapts in real-time.
               </p>
             </motion.div>
             
@@ -44,7 +44,7 @@ export const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-32 bg-[#050505]" data-testid="values-section">
+      <section className="py-32" data-testid="values-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -53,12 +53,17 @@ export const About = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-testid="values-title">
-              {/* Title placeholder */}
+              <span className="text-white">Our Core </span>
+              <span className="text-[#C65D00]">Principles</span>
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[1, 2, 3].map((index) => (
+            {[
+              { icon: Target, title: 'Precision', desc: '99.9% trajectory accuracy over 1,000+ task steps with 98.2% Zero-Shot Discovery. Industrial-grade performance that renders previous benchmarks obsolete.' },
+              { icon: Lightbulb, title: 'Autonomy', desc: 'Self-Optimizing Genetic Bytecode evolves its own micro-instructions without manual retraining. A self-replicating enhancement swarm distributes workloads fractally.' },
+              { icon: Rocket, title: 'Efficiency', desc: 'The Holographic Fractal Matrix stores one petabyte of semantic knowledge within a single gigabyte. Minimal hardware footprint with infinite scaling.' },
+            ].map((value, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -66,16 +71,16 @@ export const About = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="glass-light p-8"
-                data-testid={`value-card-${index}`}
+                data-testid={`value-card-${index + 1}`}
               >
                 <div className="w-14 h-14 flex items-center justify-center bg-[#C65D00]/10 border border-[#C65D00]/30 mb-6">
-                  {/* Icon placeholder */}
+                  <value.icon size={28} className="text-[#C65D00]" />
                 </div>
-                <h3 className="text-2xl font-semibold text-white mb-4" data-testid={`value-title-${index}`}>
-                  {/* Title placeholder */}
+                <h3 className="text-2xl font-semibold text-white mb-4" data-testid={`value-title-${index + 1}`}>
+                  {value.title}
                 </h3>
-                <p className="text-zinc-500 leading-relaxed" data-testid={`value-desc-${index}`}>
-                  {/* Description placeholder */}
+                <p className="text-zinc-500 leading-relaxed" data-testid={`value-desc-${index + 1}`}>
+                  {value.desc}
                 </p>
               </motion.div>
             ))}
@@ -104,13 +109,14 @@ export const About = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6" data-testid="team-title">
-                {/* Title placeholder */}
+                <span className="text-white">Led by </span>
+                <span className="text-[#0FECEC]">Jeremy Taylor</span>
               </h2>
               <p className="text-zinc-400 text-lg leading-relaxed mb-6" data-testid="team-desc-1">
-                {/* Description placeholder */}
+                NeurusAGI is founded and led by CEO Jeremy Taylor, who serves as the primary executive and sole architect of the platform. Under his leadership, the company validated its first functional AGI system in February 2025.
               </p>
               <p className="text-zinc-500 leading-relaxed mb-8" data-testid="team-desc-2">
-                {/* Description placeholder */}
+                The company is building market traction through its forthcoming web application, providing an industrial-grade AGI standard that prioritizes accuracy, efficiency, and autonomous reasoning. Headquartered in Tulsa, Oklahoma with offices at 1001 S. Main St. STE 600, Kalispell, MT.
               </p>
               <Link 
                 to="/contact" 
@@ -126,7 +132,7 @@ export const About = () => {
       </section>
 
       {/* Compliance */}
-      <section className="py-32 bg-[#050505]" data-testid="compliance-section">
+      <section className="py-32" data-testid="compliance-section">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -138,12 +144,12 @@ export const About = () => {
               <span className="text-[#0FECEC]">Compliance</span>
             </h2>
             <p className="text-zinc-400 text-lg leading-relaxed mb-10" data-testid="compliance-desc">
-              {/* Description placeholder */}
+              NeurusAGI automatically adapts to local regulatory requirements across every jurisdiction it operates in, ensuring enterprise-grade compliance at all times.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-                <div key={i} className="glass-light p-4 text-center" data-testid={`compliance-badge-${i}`}>
-                  <span className="text-[#0FECEC] font-mono text-sm">{/* Badge placeholder */}</span>
+              {['GDPR', 'CCPA', 'SOC 2', 'ISO 27001', 'HIPAA', 'FedRAMP', 'FinCEN', 'FATF'].map((badge) => (
+                <div key={badge} className="glass-light p-4 text-center" data-testid={`compliance-badge-${badge}`}>
+                  <span className="text-[#0FECEC] font-mono text-sm">{badge}</span>
                 </div>
               ))}
             </div>

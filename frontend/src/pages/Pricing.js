@@ -16,7 +16,7 @@ export const Pricing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black pt-20" data-testid="pricing-page">
+    <div className="min-h-screen pt-20" data-testid="pricing-page">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 hero-glow opacity-20" />
@@ -139,7 +139,7 @@ export const Pricing = () => {
       </section>
 
       {/* Info Section */}
-      <section className="py-20 bg-[#050505]" data-testid="pricing-info">
+      <section className="py-20" data-testid="pricing-info">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-6" data-testid="pricing-info-title">
             {/* Title placeholder */}

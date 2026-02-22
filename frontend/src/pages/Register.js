@@ -65,7 +65,7 @@ export const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black flex items-center justify-center px-4 py-20" data-testid="register-page">
+    <div className="min-h-screen flex items-center justify-center px-4 py-20" data-testid="register-page">
       <div className="absolute inset-0 hero-glow opacity-20" />
       <div className="absolute inset-0 bg-grid opacity-20" />
       

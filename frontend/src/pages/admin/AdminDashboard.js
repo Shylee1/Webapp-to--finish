@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -34,9 +34,21 @@ export const AdminDashboard = () => {
 
   const token = localStorage.getItem('admin_token');
 
-  const getAuthHeaders = useCallback(() => ({ headers: { Authorization: `Bearer ${token}` } }), [token]);
+  useEffect(() => {
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+    fetchDashboardData();
+  }, [token, navigate, fetchDashboardData]);boardData]);
 
-  const fetchDashboardData = useCallback(async () => {
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatMessages]);
+
+  const getAuthHeaders = () => ({ headers: { Authorization: `Bearer ${token}` } });
+
+  const fetchDashboardData = async () => {
     setLoading(true);
     try {
       const [statsRes, usersRes, articlesRes, contactsRes, inquiriesRes] = await Promise.all([
@@ -59,19 +71,7 @@ export const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  }, [getAuthHeaders, navigate]);
-
-  useEffect(() => {
-    if (!token) {
-      navigate('/admin/login');
-      return;
-    }
-    fetchDashboardData();
-  }, [token, navigate, fetchDashboardData]);
-
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [chatMessages]);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -171,12 +171,12 @@ export const AdminDashboard = () => {
   );
 
   return (
-    <div className="h-screen flex overflow-hidden" data-testid="admin-dashboard">
+    <div className="h-screen bg-black flex overflow-hidden" data-testid="admin-dashboard">
       {/* Sidebar */}
       <motion.aside
         initial={false}
         animate={{ width: sidebarOpen ? 280 : 0, opacity: sidebarOpen ? 1 : 0 }}
-        className={`bg-black/90 border-r border-white/5 flex flex-col overflow-hidden ${sidebarOpen ? '' : 'hidden'}`}
+        className={`bg-[#050505] border-r border-white/5 flex flex-col overflow-hidden ${sidebarOpen ? '' : 'hidden'}`}
         data-testid="admin-sidebar"
       >
         <div className="p-6 border-b border-white/5">
@@ -189,10 +189,11 @@ export const AdminDashboard = () => {
             <button
               key={item.id}
               onClick={() => setActiveSection(item.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 transition-all ${activeSection === item.id
-                ? 'text-[#C65D00] bg-[#C65D00]/10 border border-[#C65D00]/30'
-                : 'text-zinc-500 hover:text-white hover:bg-white/5'
-                }`}
+              className={`w-full flex items-center gap-3 px-4 py-3 transition-all ${
+                activeSection === item.id
+                  ? 'text-[#C65D00] bg-[#C65D00]/10 border border-[#C65D00]/30'
+                  : 'text-zinc-500 hover:text-white hover:bg-white/5'
+              }`}
               data-testid={`admin-nav-${item.id}`}
             >
               <item.icon size={18} />
@@ -216,7 +217,7 @@ export const AdminDashboard = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Header */}
-        <header className="h-16 bg-black/90 border-b border-white/5 flex items-center justify-between px-6">
+        <header className="h-16 bg-[#050505] border-b border-white/5 flex items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -533,10 +534,11 @@ export const AdminDashboard = () => {
                     ) : (
                       chatMessages.map((msg, i) => (
                         <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                          <div className={`max-w-[70%] px-6 py-4 ${msg.role === 'user'
-                            ? 'bg-[#C65D00]/10 border border-[#C65D00]/30'
-                            : 'bg-[#0FECEC]/10 border border-[#0FECEC]/30'
-                            }`}>
+                          <div className={`max-w-[70%] px-6 py-4 ${
+                            msg.role === 'user'
+                              ? 'bg-[#C65D00]/10 border border-[#C65D00]/30'
+                              : 'bg-[#0FECEC]/10 border border-[#0FECEC]/30'
+                          }`}>
                             <p className="text-white">{msg.content}</p>
                             <p className="text-xs text-zinc-600 mt-2">{new Date(msg.timestamp).toLocaleTimeString()}</p>
                           </div>

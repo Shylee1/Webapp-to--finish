@@ -50,7 +50,7 @@ export const Investors = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20" data-testid="investors-page">
+    <div className="min-h-screen bg-black pt-20" data-testid="investors-page">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 hero-glow opacity-20" />
@@ -67,7 +67,7 @@ export const Investors = () => {
                 <span className="text-[#C65D00]">Future of AI</span>
               </h1>
               <p className="text-zinc-400 text-lg leading-relaxed mb-8" data-testid="investor-description">
-                NeurusAGI represents a generational investment opportunity in the AGI space. Our Living Neural Network achieves 10^15 cognitive operations per second with a 1000:1 memory compression ratio, creating a hardware-to-intelligence ratio no legacy system can match. Currently in iterative testing following successful assembly.
+                {/* Description placeholder */}
               </p>
               
               {/* Key Info Placeholders */}
@@ -97,7 +97,7 @@ export const Investors = () => {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20" data-testid="investor-form-section">
+      <section className="py-20 bg-[#050505]" data-testid="investor-form-section">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

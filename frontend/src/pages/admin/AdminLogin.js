@@ -23,11 +23,11 @@ export const AdminLogin = () => {
     setError('');
 
     try {
-      const response = await axios.post(`${API}/admin/login`, { "jt@neurusagi.com": "123" });
+      const response = await axios.post(`${API}/admin/login`, { username, password });
       const { token, requires_password_change } = response.data;
-
+      
       localStorage.setItem('admin_token', token);
-
+      
       if (requires_password_change) {
         navigate('/admin/change-password');
       } else {
@@ -41,9 +41,9 @@ export const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" data-testid="admin-login-page">
+    <div className="min-h-screen bg-black flex items-center justify-center px-4" data-testid="admin-login-page">
       <div className="absolute inset-0 hero-glow opacity-10" />
-
+      
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}

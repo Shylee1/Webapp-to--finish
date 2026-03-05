@@ -79,16 +79,16 @@ export const Dashboard = () => {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden" data-testid="dashboard-page">
+    <div className="h-screen bg-black flex overflow-hidden" data-testid="dashboard-page">
       {/* Sidebar */}
       <motion.aside
         initial={false}
         animate={{ width: sidebarOpen ? 280 : 0, opacity: sidebarOpen ? 1 : 0 }}
-        className={`bg-black/90 border-r border-white/5 flex flex-col overflow-hidden ${sidebarOpen ? '' : 'hidden'}`}
+        className={`bg-[#050505] border-r border-white/5 flex flex-col overflow-hidden ${sidebarOpen ? '' : 'hidden'}`}
         data-testid="dashboard-sidebar"
       >
         {/* Logo */}
-        <div className="p-6 border-b border-white/10">
+        <div className="p-6 border-b border-white/5">
           <img src={LOGO_URL} alt="NeurusAGi" className="h-12" />
         </div>
 
@@ -133,7 +133,7 @@ export const Dashboard = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="h-16 bg-black/90 border-b border-white/5 flex items-center justify-between px-4">
+        <header className="h-16 bg-[#050505] border-b border-white/5 flex items-center justify-between px-4">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 text-zinc-500 hover:text-white"
@@ -202,7 +202,7 @@ export const Dashboard = () => {
         </div>
 
         {/* Input Area */}
-        <div className="p-6 border-t border-white/5 bg-black/90">
+        <div className="p-6 border-t border-white/5 bg-[#050505]">
           <form onSubmit={handleSendMessage} className="max-w-4xl mx-auto">
             <div className="relative">
               <input

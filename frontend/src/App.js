@@ -32,25 +32,10 @@ const AuthLayout = ({ children }) => (
   <>{children}</>
 );
 
-const LOGO_URL = 'https://customer-assets.emergentagent.com/job_666bb9f1-3878-43b6-926b-3441c49d8146/artifacts/tgzddx89_IMG_3600.jpeg';
-
 function App() {
   return (
     <AuthProvider>
-      <div className="App min-h-screen bg-black relative">
-        {/* Global fixed background logo - visible on all pages */}
-        <div
-          className="fixed inset-0 z-0 pointer-events-none"
-          style={{
-            backgroundImage: `url(${LOGO_URL})`,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'contain',
-            backgroundColor: '#000000',
-            opacity: 0.15
-          }}
-        />
-        <div className="relative z-10">
+      <div className="App min-h-screen bg-black">
         <BrowserRouter>
           <Routes>
             {/* Public Pages */}
@@ -76,7 +61,6 @@ function App() {
         </BrowserRouter>
         <Toaster />
         <Analytics />
-        </div>
       </div>
     </AuthProvider>
   );

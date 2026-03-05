@@ -48,7 +48,7 @@ export const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen pt-20" data-testid="contact-page">
+    <div className="min-h-screen bg-black pt-20" data-testid="contact-page">
       {/* Hero */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 hero-glow opacity-20" />
@@ -64,7 +64,7 @@ export const Contact = () => {
               <span className="text-[#0FECEC]">Touch</span>
             </h1>
             <p className="text-zinc-400 text-lg max-w-2xl mx-auto" data-testid="contact-subtitle">
-              Ready to learn more about NeurusAGI? Our team is here to answer your questions.
+              {/* Subtitle placeholder */}
             </p>
           </motion.div>
         </div>
@@ -84,7 +84,7 @@ export const Contact = () => {
               <div>
                 <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
                 <p className="text-zinc-500 leading-relaxed" data-testid="contact-info-desc">
-                  Reach out for media inquiries, partnership opportunities, or general questions about NeurusAGI.
+                  {/* Description placeholder */}
                 </p>
               </div>
 
@@ -95,7 +95,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-zinc-500 text-sm">Email</p>
-                    <p className="text-white" data-testid="contact-email">Jt@neurusagi.com</p>
+                    <p className="text-white" data-testid="contact-email">{/* Email placeholder */}</p>
                   </div>
                 </div>
 
@@ -105,7 +105,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-zinc-500 text-sm">Phone</p>
-                    <p className="text-white" data-testid="contact-phone">Contact via email</p>
+                    <p className="text-white" data-testid="contact-phone">{/* Phone placeholder */}</p>
                   </div>
                 </div>
 
@@ -115,7 +115,7 @@ export const Contact = () => {
                   </div>
                   <div>
                     <p className="text-zinc-500 text-sm">Location</p>
-                    <p className="text-white" data-testid="contact-location">Tulsa, OK / 1001 S. Main St. STE 600, Kalispell, MT 59901</p>
+                    <p className="text-white" data-testid="contact-location">{/* Location placeholder */}</p>
                   </div>
                 </div>
               </div>

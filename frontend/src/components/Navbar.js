@@ -21,7 +21,7 @@ export const Navbar = () => {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-white/5" data-testid="navbar">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-heavy" data-testid="navbar">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo - clean on black header */}
@@ -100,82 +100,70 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - compact right-aligned dropdown */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop overlay to close menu */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="lg:hidden fixed inset-0 z-40"
-              onClick={() => setIsOpen(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-              className="lg:hidden absolute top-20 right-4 z-50 w-64 bg-black/95 border border-white/10 shadow-2xl shadow-black/50"
-              data-testid="nav-mobile-menu"
-            >
-              <div className="py-3">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between py-3 px-5 text-sm transition-colors ${
-                      location.pathname === link.path
-                        ? 'text-[#0FECEC] bg-[#0FECEC]/5'
-                        : 'text-zinc-400 hover:text-white hover:bg-white/5'
-                    }`}
-                  >
-                    {link.label}
-                    <ChevronRight size={14} className="opacity-40" />
-                  </Link>
-                ))}
-                <div className="mx-4 my-3 border-t border-white/10" />
-                <div className="px-4 pb-3 space-y-2">
-                  {user ? (
-                    <>
-                      <Link
-                        to="/dashboard"
-                        onClick={() => setIsOpen(false)}
-                        className="block w-full btn-primary text-center text-xs py-2.5"
-                      >
-                        Dashboard
-                      </Link>
-                      <button
-                        onClick={() => { logout(); setIsOpen(false); }}
-                        className="block w-full btn-secondary text-center text-xs py-2.5"
-                      >
-                        Logout
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <Link
-                        to="/login"
-                        onClick={() => setIsOpen(false)}
-                        className="block w-full btn-secondary text-center text-xs py-2.5"
-                      >
-                        Login
-                      </Link>
-                      <Link
-                        to="/register"
-                        onClick={() => setIsOpen(false)}
-                        className="block w-full btn-primary text-center text-xs py-2.5"
-                      >
-                        Get Started
-                      </Link>
-                    </>
-                  )}
-                </div>
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="lg:hidden glass-heavy border-t border-white/10"
+            data-testid="nav-mobile-menu"
+          >
+            <div className="px-4 py-6 space-y-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center justify-between py-3 px-4 ${
+                    location.pathname === link.path
+                      ? 'text-[#0FECEC] bg-[#0FECEC]/10'
+                      : 'text-zinc-400'
+                  }`}
+                >
+                  {link.label}
+                  <ChevronRight size={16} />
+                </Link>
+              ))}
+              <div className="pt-4 border-t border-white/10 space-y-3">
+                {user ? (
+                  <>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full btn-primary text-center text-sm py-3"
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={() => { logout(); setIsOpen(false); }}
+                      className="block w-full btn-secondary text-center text-sm py-3"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full btn-secondary text-center text-sm py-3"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      to="/register"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full btn-primary text-center text-sm py-3"
+                    >
+                      Get Started
+                    </Link>
+                  </>
+                )}
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </nav>

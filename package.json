@@ -1,6 +1,13 @@
 {
   "name": "webapp-to-finish",
   "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",
     "framer-motion": "^12.38.0",

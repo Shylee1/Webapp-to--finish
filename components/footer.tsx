@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowUpRight, Github, Twitter, Linkedin, Mail } from "lucide-react"
+import { ArrowUpRight, Mail, Send, Globe, MessageCircle } from "lucide-react"
 
 const LOGO_URL = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo1-IKwHh98l81IzlyGCGFZSpIAmjqQnHC.jpeg"
 
@@ -33,9 +33,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: MessageCircle, href: "https://twitter.com", label: "Twitter" },
+  { icon: Globe, href: "https://github.com", label: "GitHub" },
+  { icon: Send, href: "https://linkedin.com", label: "LinkedIn" },
   { icon: Mail, href: "mailto:contact@neurusagi.com", label: "Email" },
 ]
 

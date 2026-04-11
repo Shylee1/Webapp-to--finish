@@ -1,20 +1,34 @@
-import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   title: "NeurusAGi - A Quantum Leap in Intelligence",
-  description: "NeurusAGi - Revolutionary AI Solutions",
+  description: "Pioneering the future of artificial general intelligence with breakthrough quantum-enhanced neural architectures. Transform your business with next-generation AI.",
+  keywords: ["AGI", "Artificial General Intelligence", "Quantum AI", "Neural Networks", "Machine Learning", "AI Platform"],
+  authors: [{ name: "NeurusAGi" }],
+  openGraph: {
+    title: "NeurusAGi - A Quantum Leap in Intelligence",
+    description: "Pioneering the future of artificial general intelligence with breakthrough quantum-enhanced neural architectures.",
+    type: "website",
+    locale: "en_US",
+    siteName: "NeurusAGi",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NeurusAGi - A Quantum Leap in Intelligence",
+    description: "Pioneering the future of artificial general intelligence.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({
@@ -24,9 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
-      >
+      <body className="min-h-screen bg-black text-white antialiased overflow-x-hidden">
         {children}
       </body>
     </html>

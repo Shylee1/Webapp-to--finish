@@ -17,6 +17,7 @@ import { AdminChangePassword } from "./pages/admin/AdminChangePassword";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
 import { Toaster } from "./components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
+import { SEO } from "./components/SEO";
 
 // Layout with Navbar and Footer for public pages
 const PublicLayout = ({ children }) => (
@@ -37,6 +38,7 @@ function App() {
     <AuthProvider>
       <div className="App min-h-screen bg-black">
         <BrowserRouter>
+          <SEO />
           <Routes>
             {/* Public Pages */}
             <Route path="/" element={<PublicLayout><Home /></PublicLayout>} />

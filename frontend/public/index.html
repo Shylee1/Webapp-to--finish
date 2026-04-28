@@ -4,40 +4,102 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <meta name="description" content="A product of emergent.sh" />
-        <!--
-        manifest.json provides metadata used when your web app is installed on a
-        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-        -->
-        <!--
-        Notice the use of %PUBLIC_URL% in the tags above.
-        It will be replaced with the URL of the `public` folder during the build.
-        Only files inside the `public` folder can be referenced from the HTML.
+        
+        <!-- Primary SEO Meta Tags -->
+        <title>NeurusAGi | A Quantum Leap in Intelligence - Advanced AI Solutions</title>
+        <meta name="title" content="NeurusAGi | A Quantum Leap in Intelligence - Advanced AI Solutions" />
+        <meta name="description" content="NeurusAGi delivers cutting-edge artificial intelligence solutions. Experience the future of AI with our quantum-powered intelligence platform. Enterprise-grade AI for businesses worldwide." />
+        <meta name="keywords" content="AI, artificial intelligence, AGI, machine learning, deep learning, neural networks, quantum computing, enterprise AI, NeurusAGi, advanced AI solutions" />
+        <meta name="author" content="NeurusAGi" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="bingbot" content="index, follow" />
+        <link rel="canonical" href="https://neurusagi.com" />
+        
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://neurusagi.com/" />
+        <meta property="og:title" content="NeurusAGi | A Quantum Leap in Intelligence" />
+        <meta property="og:description" content="NeurusAGi delivers cutting-edge artificial intelligence solutions. Experience the future of AI with our quantum-powered intelligence platform." />
+        <meta property="og:image" content="https://customer-assets.emergentagent.com/job_666bb9f1-3878-43b6-926b-3441c49d8146/artifacts/tgzddx89_IMG_3600.jpeg" />
+        <meta property="og:site_name" content="NeurusAGi" />
+        <meta property="og:locale" content="en_US" />
+        
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://neurusagi.com/" />
+        <meta property="twitter:title" content="NeurusAGi | A Quantum Leap in Intelligence" />
+        <meta property="twitter:description" content="NeurusAGi delivers cutting-edge artificial intelligence solutions. Experience the future of AI with our quantum-powered intelligence platform." />
+        <meta property="twitter:image" content="https://customer-assets.emergentagent.com/job_666bb9f1-3878-43b6-926b-3441c49d8146/artifacts/tgzddx89_IMG_3600.jpeg" />
+        
+        <!-- Additional SEO -->
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="NeurusAGi" />
+        
+        <!-- Structured Data - Organization -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "NeurusAGi",
+            "url": "https://neurusagi.com",
+            "logo": "https://customer-assets.emergentagent.com/job_666bb9f1-3878-43b6-926b-3441c49d8146/artifacts/tgzddx89_IMG_3600.jpeg",
+            "description": "NeurusAGi delivers cutting-edge artificial intelligence solutions. A quantum leap in intelligence.",
+            "sameAs": [],
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "availableLanguage": "English"
+            }
+        }
+        </script>
+        
+        <!-- Structured Data - WebSite for Google Search -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "NeurusAGi",
+            "url": "https://neurusagi.com",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://neurusagi.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+        </script>
+        
+        <!-- Structured Data - SoftwareApplication -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "NeurusAGi",
+            "operatingSystem": "Web",
+            "applicationCategory": "BusinessApplication",
+            "description": "Advanced AI solutions for enterprise and business applications",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            }
+        }
+        </script>
 
-        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-        work correctly both with client-side routing and a non-root public URL.
-        Learn how to configure a non-root public URL by running `npm run build`.
-        -->
-        <title>Emergent | Fullstack App</title>
         <script src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
-        <!--
-        These two scripts have been added for the Visual Edits, please do not edit or remove them
-        -->
         <script>
-            // Only load visual edit scripts when inside an iframe
             if (window.self !== window.top) {
-                // Load debug monitor script
                 var debugMonitorScript = document.createElement('script');
                 debugMonitorScript.src = 'https://assets.emergent.sh/scripts/debug-monitor.js';
                 document.head.appendChild(debugMonitorScript);
 
-                // Configure Tailwind
                 window.tailwind = window.tailwind || {};
                 tailwind.config = {
                     corePlugins: { preflight: false },
                 };
 
-                // Load Tailwind CDN
                 var tailwindScript = document.createElement('script');
                 tailwindScript.src = 'https://cdn.tailwindcss.com';
                 document.head.appendChild(tailwindScript);
@@ -47,16 +109,6 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
-        <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
         <a
             id="emergent-badge"
             target="_blank"
@@ -87,6 +139,7 @@
                 <img
                     style="width: 20px; height: 20px; margin-right: 8px"
                     src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"
+                    alt="Emergent logo"
                 />
                 <p
                     style="
@@ -168,7 +221,7 @@
             })(document, window.posthog || []);
             posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE", {
                 api_host: "https://us.i.posthog.com",
-                person_profiles: "identified_only", // or 'always' to create profiles for anonymous users as well
+                person_profiles: "identified_only",
             });
         </script>
     </body>

@@ -1,0 +1,29 @@
+# robots.txt for NeurusAGi
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /pricing
+Allow: /news
+Allow: /investors
+Allow: /contact
+Allow: /register
+
+# Disallow private/admin pages
+Disallow: /login
+Disallow: /dashboard
+Disallow: /admin/
+Disallow: /admin/*
+
+# Sitemaps
+Sitemap: https://neurusagi.com/sitemap.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+
+# Bing specific
+User-agent: Bingbot
+Allow: /

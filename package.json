@@ -1,6 +1,12 @@
 {
   "name": "webapp-to-finish",
   "version": "1.0.0",
+  "scripts": {
+    "dev": "cd frontend && yarn install && yarn start",
+    "start": "cd frontend && yarn start",
+    "build": "cd frontend && yarn install && yarn build",
+    "install-frontend": "cd frontend && yarn install"
+  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.0.0",
     "serverless": "^2.0.0"

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -34,21 +34,9 @@ export const AdminDashboard = () => {
 
   const token = localStorage.getItem('admin_token');
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/admin/login');
-      return;
-    }
-    fetchDashboardData();
-  }, [token, navigate, fetchDashboardData]);
+  const getAuthHeaders = useCallback(() => ({ headers: { Authorization: `Bearer ${token}` } }), [token]);
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [chatMessages]);
-
-  const getAuthHeaders = () => ({ headers: { Authorization: `Bearer ${token}` } });
-
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     setLoading(true);
     try {
       const [statsRes, usersRes, articlesRes, contactsRes, inquiriesRes] = await Promise.all([
@@ -71,7 +59,19 @@ export const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [getAuthHeaders, navigate]);
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/admin/login');
+      return;
+    }
+    fetchDashboardData();
+  }, [token, navigate, fetchDashboardData]);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatMessages]);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -46,9 +46,9 @@ export const AdminDashboard = () => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatMessages]);
 
-  const getAuthHeaders = () => ({ headers: { Authorization: `Bearer ${token}` } });
+  const getAuthHeaders = useCallback(() => ({ headers: { Authorization: `Bearer ${token}` } }), [token]);
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     setLoading(true);
     try {
       const [statsRes, usersRes, articlesRes, contactsRes, inquiriesRes] = await Promise.all([
@@ -71,7 +71,7 @@ export const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [getAuthHeaders, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');

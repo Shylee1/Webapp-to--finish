@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Calendar, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import axios from 'axios';
@@ -20,7 +20,7 @@ export const News = () => {
     fetchArticles();
   }, [currentPage, searchQuery, fetchArticles]);
 
-  const fetchArticles = async () => {
+  const fetchArticles = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API}/articles`, {
@@ -39,7 +39,7 @@ export const News = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentPage, searchQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault();
